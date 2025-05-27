@@ -8,7 +8,9 @@ const server = express()
 const port = process.env.PORT || 4004
 
 //middleware
-server.use(cors())
+server.use(cors({
+  origin: process.env.FRONTEND_URL
+}))
 server.use(express.json())
 
 //routes
