@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form'
 import logo from '../assets/leadM-Logo.svg'
 
 export default function Home() {
-    const baseURL = 'http://localhost:4004/api/leads'
+    const baseURL = import.meta.env.VITE_API_URL || 'http://localhost:4004/api/leads'
     const {register, handleSubmit, reset, formState: {errors}} = useForm()
     const [leads, setLeads] = useState([])
     const [loading, setLoading] = useState(false)
