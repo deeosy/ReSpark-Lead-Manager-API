@@ -89,16 +89,25 @@ export default function Home() {
 
         <div className="">
           <h3 className='text-xl my-3' >Leads</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2  ">
-            {leads.map((lead) => (
-              <div key={lead._id} className="border border-gray-500 px-2 py-0.5 rounded-sm ">
-                <p>Name : <span>{lead.name}</span> </p>
-                <p>Email : <span>{lead.email}</span> </p>
-                <p>Status : <span>{lead.status}</span> </p>
-                <p>Created At : <span>{new Date(lead.createdAt).toLocaleString()}</span> </p> 
+          {loading ? (
+              <div className="min-h-[80vh] flex items-center justify-center">
+                <div className="text-center">
+                  <div className='animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-green-400 mx-auto'></div>
+                  <p className="mt-4">Loading Leads...</p>
+                </div>
               </div>
-            ))}
-          </div>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2  ">
+                {leads.map((lead) => (
+                  <div key={lead._id} className="border border-gray-500 px-2 py-0.5 rounded-sm ">
+                    <p>Name : <span>{lead.name}</span> </p>
+                    <p>Email : <span>{lead.email}</span> </p>
+                    <p>Status : <span>{lead.status}</span> </p>
+                    <p>Created At : <span>{new Date(lead.createdAt).toLocaleString()}</span> </p> 
+                  </div>
+                ))}
+              </div>
+          )}
         </div>
     </div>
   )
