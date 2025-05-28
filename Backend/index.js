@@ -8,8 +8,16 @@ const server = express()
 const port = process.env.PORT || 4004
 
 //middleware
-server.use(cors({
-  origin: process.env.FRONTEND_URL
+const allowedOrigins = ['http://localhost:5174', 'https://elegant-trifle-92ec82.netlify.app']
+
+server.use(cors({ 
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
 }))
 server.use(express.json())
 
